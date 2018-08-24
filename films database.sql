@@ -20,7 +20,7 @@ CREATE DATABASE "FILMS"
 
 CREATE TABLE directors (
 	
-	-- I want an id as an increasing number; I'll use SERIAL as data type
+	-- I want an id as an increasing number; I'll use SERIAL as data type --> increments with every new row
 	-- I'll also set this id as the primary key, to establish links to other tables
 	-- after data type, write PRIMARY KEY --> id field will become primary key
 	id SERIAL PRIMARY KEY,
@@ -35,3 +35,26 @@ CREATE TABLE directors (
 	-- awards, data type INT
 	awards INT	
 );
+
+SELECT * FROM directors;
+
+/* I'll have to set FOREIGN KEYS*/
+/* column_name_2 DATA TYPE REFERENCES table_name_1(column_name_1)*/
+/* after REFERENCES we have the table name and the column name to which the created column refers*/
+
+CREATE TABLE movies (
+
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(40) UNIQUE NOT NULL,
+	-- make the following as release year
+	-- SELECT EXTRACT(YEAR FROM TIMESTAMP '2001-02-16 20:38:40');
+	release_date DATE NOT NULL,
+	--set the following two columns as FOREIGN ID:
+	director INT REFERENCES directors(id),
+	lead_actor INT, 
+	-- rating needs a CHECK constraint, to allow only values between 1 and 100
+	rating INT CHECK (rating BETWEEN 1 AND 100)
+	
+);
+
+SELECT * FROM movies;
