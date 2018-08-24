@@ -86,5 +86,30 @@ CREATE TABLE writers (
 );
 
 
+/* ADD and DROP (remove) columns from a table*/
+/*	ALTER TABLE table_name
+	ADD column name DATA TYPE constraints (for example NOT NULL)
+	
+	ALTER TABLE table_name
+	DROP column name
+*/
+
+
+SELECT * FROM directors;
+SELECT * FROM movies;
+
+ALTER TABLE directors
+ADD nationality VARCHAR(20);
+
+-- NUMERIC(n, m) (equal to DECIMAL); has 2 numbers as parameters
+-- n: the total amount of numbers composing the decimal number
+-- m: the total amount of numbers after the decimal point
+ALTER TABLE movies
+ADD earnings NUMERIC(6,2) NOT NULL;
+
+ALTER TABLE movies
+DROP rating;
+
+
 
 
