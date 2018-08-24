@@ -58,3 +58,33 @@ CREATE TABLE movies (
 );
 
 SELECT * FROM movies;
+
+/* EXERCISES*/
+
+--1. Create a producers table, with id, name and date_of_birth columns. 
+--   Make the id a primary key and the name unique. 
+
+CREATE TABLE producers (
+
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(30) UNIQUE NOT NULL,
+	date_of_birth DATE,
+	movies INT REFERENCES movies(id)
+);
+
+
+--2. Create a writers table with id, name and date_of_birth columns. 
+--   Make the id a primary key and add any constraints that you like. 
+
+CREATE TABLE writers (
+
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(30) UNIQUE NOT NULL,
+	date_of_birth DATE NOT NULL,
+	movies INT REFERENCES movies(id),
+	rating INT CHECK(rating BETWEEN 1 AND 100)
+);
+
+
+
+
