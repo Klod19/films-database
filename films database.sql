@@ -157,3 +157,29 @@ ALTER TABLE actors ALTER COLUMN nationality DROP NOT NULL;
 
 ALTER TABLE actors ALTER COLUMN name TYPE VARCHAR(100);
 
+/* REMOVE TABLES FROM DATABASE */
+-- let's make a table first and insert some data into it
+-- to delete it:
+-- DROP TABLE table_name
+
+CREATE TABLE example (
+
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(20),
+	gender CHAR(1)
+
+);
+
+INSERT INTO example (name, gender )
+VALUES ('Martin', 'M');
+
+INSERT INTO example(name, gender)
+VALUES ('Ruth', 'F');
+
+INSERT INTO example(name, gender)
+VALUES ('Kim', 'F');
+
+SELECT * FROM example;
+
+DROP TABLE example;
+
