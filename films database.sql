@@ -183,3 +183,12 @@ SELECT * FROM example;
 
 DROP TABLE example;
 
+
+/* TRUNCATE --> remove all rows from a table*/
+/* it first deletes the table with DROP TABLE, then runs a CREATE of it; it will have no rows*/
+/* TRUNCATE table_name*/
+
+SELECT * FROM example;
+
+TRUNCATE example;
+
