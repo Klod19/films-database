@@ -217,3 +217,62 @@ DROP TABLE writers;
 /* SECTION 7: DATA MANIPULATION LANGUAGE*/
 
 /* INSERT INTO --> insert data in a table */
+/* INSERT INTO table_name (column_name_1, column_name_2, column_name_3 etc)
+   VALUES ('value_1', 'value_2', value_3)
+*/
+/* !! note: strings need quotation marks, integers/numbers don't */
+
+SELECT * FROM directors;
+
+INSERT INTO directors (name, date_of_birth, awards, nationality)
+VALUES ('Christopher Nolan', '19700730', 7, 'British');
+
+-- I can also insert NULL values if there's no constraint against it:
+
+INSERT INTO directors (name, date_of_birth, awards, nationality)
+VALUES ('Danny Boyle', '19561020', 12, NULL);
+
+-- There's an UNIQUE constraint on column "name", so there cannot be duplicates;
+-- the following will return an error
+
+INSERT INTO directors (name, date_of_birth, awards, nationality)
+VALUES ('Christopher Nolan', '19700730', 7, 'yank');
+
+-- insert 2 more rows:
+
+INSERT INTO directors (name, date_of_birth, awards, nationality)
+VALUES ('Jonathan Nolan', '19760606', 4, 'British');
+
+INSERT INTO directors (name, date_of_birth, awards, nationality)
+VALUES ('Luc Besson', '19590318', 9, 'French');
+
+
+/*UPDATE data in a table */
+/* UPDATE table_name 
+   SET column_name_1 = new_value_x (with '' if string), column_name_2 = new_value_y
+   WHERE clause (if needed)
+*/
+
+-- change 'Luc Besson' to 'Luke Besson' (which is wrong)
+
+UPDATE directors
+SET name = 'Luke Besson'
+WHERE name = 'Luc Besson';
+
+-- with the following I set all the nationalities to British (because no WHERE clause -- > every value updated)
+
+UPDATE directors
+SET nationality = 'British';
+
+-- But this is wrong! Let's correct it, and correct also Luke Besson to Luc Besson
+
+UPDATE directors
+SET name = 'Luc Besson', nationality = 'French'
+WHERE id = 5;
+
+-- I would like to change the nationality of both the Nolans
+
+UPDATE directors
+SET nationality = 'Virgin Islands LOL'
+WHERE name LIKE '%Nolan%';
+
