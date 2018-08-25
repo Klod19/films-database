@@ -206,5 +206,14 @@ SELECT * FROM movies;
 -- already done in the line before, but it would go this way:
 ALTER TABLE movies ADD FOREIGN KEY (producer_id) REFERENCES producers(id);
 
+ -- looks loke it can also modify the reference (the following is pointless, but works)
+ALTER TABLE movies ADD FOREIGN KEY (producer_id) REFERENCES actors(id);
+
+
 -- 3. Remove the writers table from the database. 
 DROP TABLE writers;
+
+
+/* SECTION 7: DATA MANIPULATION LANGUAGE*/
+
+/* INSERT INTO --> insert data in a table */
