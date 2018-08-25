@@ -88,10 +88,10 @@ CREATE TABLE writers (
 
 /* ADD and DROP (remove) columns from a table*/
 /*	ALTER TABLE table_name
-	ADD column name DATA TYPE constraints (for example NOT NULL)
+	ADD column_name DATA TYPE constraints (for example NOT NULL)
 	
 	ALTER TABLE table_name
-	DROP column name
+	DROP column_name
 */
 
 
@@ -192,3 +192,19 @@ SELECT * FROM example;
 
 TRUNCATE example;
 
+/*EXERCISES*/
+
+-- 1. Add a producer_id column to the movies table. 
+
+ALTER TABLE movies 
+ADD producer_id INT UNIQUE REFERENCES producers(id);
+
+SELECT * FROM movies;
+
+-- 2. Add a foreign key constraint to the producer_id column in the movies table 
+-- that references the id column in the producers table. 
+-- already done in the line before, but it would go this way:
+ALTER TABLE movies ADD FOREIGN KEY (producer_id) REFERENCES producers(id);
+
+-- 3. Remove the writers table from the database. 
+DROP TABLE writers;
