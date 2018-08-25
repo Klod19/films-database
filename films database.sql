@@ -110,6 +110,50 @@ ADD earnings NUMERIC(6,2) NOT NULL;
 ALTER TABLE movies
 DROP rating;
 
+/* MODIFYING COLUMNS (foreign keys, constraints, data types)*/
 
+CREATE TABLE actors(
 
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(30) UNIQUE NOT NULL,
+	gender CHAR(1),
+	date_of_birth DATE NOT NULL,
+	nationality VARCHAR (20) NOT NULL
+	
+);
+
+SELECT * FROM actors;
+SELECT * FROM movies;
+
+-- the column lead_actor from table movies doesn't have a foreign key connecting it to table actors
+-- to add a foreign key to a table:
+-- ALTER TABLE table_name_1 ADD FOREIGN KEY(column_name_1) REFERENCES table_name_2(column_name_2)
+
+ALTER TABLE movies ADD FOREIGN KEY(lead_actor) REFERENCES actors(id);
+
+-- add a UNIQUE constraint on the name field from actors table
+-- ALTER TABLE table_name ADD CONSTRAINT constraint_name CONSTRAINT TYPE (column_name)
+-- note: the constraint_name will not appear, it's just the name we gave to the constraint
+
+ALTER TABLE actors ADD CONSTRAINT unique_name UNIQUE (name);
+
+-- DROP (cancel) a  UNIQUE constraint
+-- ALTER TABLE table_name DROP CONSTRAINT constraint_name
+
+ALTER TABLE actors DROP CONSTRAINT unique_name;
+
+-- !! SET (like ADD) a NOT NULL constraint (different from adding a UNIQUE)
+-- ALTER TABLE table_name ALTER COLUMN column_name SET NOT NULL
+
+ALTER TABLE actors ALTER COLUMN nationality SET NOT NULL;
+
+-- DROP a NOT NULL constraint
+-- ALTER TABLE table_name ALTER COLUMN column_name DROP NOT NULL
+
+ALTER TABLE actors ALTER COLUMN nationality DROP NOT NULL;
+
+-- ALTER a DATA TYPE
+-- ALTER TABLE table_name ALTER COLUMN column_name TYPE DATA_TYPE_NAME(n)
+
+ALTER TABLE actors ALTER COLUMN name TYPE VARCHAR(100);
 
