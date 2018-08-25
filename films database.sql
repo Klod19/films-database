@@ -276,3 +276,32 @@ UPDATE directors
 SET nationality = 'Virgin Islands LOL'
 WHERE name LIKE '%Nolan%';
 
+-- add two more table: Wes Anderson and Wong Kar-Wai
+
+INSERT INTO directors (name, date_of_birth, awards, nationality)
+VALUES ('Wong Kar-Wai', '19580717', 8, 'Chinese');
+
+INSERT INTO directors (name, date_of_birth, awards, nationality)
+VALUES ('Wes Anderson', '19690501', 5, 'yank');
+
+
+/* DELETE rows of data from a table*/
+/* DELETE FROM table_name
+   WHERE clause (without it all rows are deleted --> same result as TRUNCATE)
+*/
+SELECT * FROM directors;
+
+-- get rid of Luc Besson based on id
+
+DELETE FROM directors
+WHERE id = 5;
+
+-- get rid of the Nolans based on their name (with nationality won't make sense, it could delete other rows)
+
+DELETE FROM directors
+WHERE name LIKE '%Nolan%';
+
+-- get rid of all the remaining rows
+
+DELETE FROM directors;
+
