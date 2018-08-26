@@ -305,3 +305,39 @@ WHERE name LIKE '%Nolan%';
 
 DELETE FROM directors;
 
+/* EXERCISES*/
+
+-- 1. Insert 3 writers into the producers table. 
+SELECT * FROM producers;
+SELECT * FROM movies;
+
+-- in the producers table, the column movies refers to a foreign key - the movies id
+-- this is wrong, it should only return the number of movies
+-- I'll delete the column and make a new one
+
+ALTER TABLE producers
+DROP movies;
+
+ALTER TABLE producers
+ADD movies INT;
+
+-- I can also insert values with one command:
+INSERT INTO producers (name, date_of_birth, movies)
+VALUES ('John the Dimwit', '19601008', 8), ('Jack the Dipshit', '19500510', 10), ('Phil the Dumbfuck', '19690618', 7);
+
+-- 2. Update the date_of_birth column to 20/05/1975 for the producer with id equal to 2. 
+
+UPDATE producers
+SET date_of_birth = '19750520' 
+WHERE id = 2;
+
+-- 3. Delete the producer with id equal to 1 (I'll do 3 because I've no id = 1). 
+
+DELETE FROM producers
+WHERE id = 3;
+
+-- 4. Delete all the rows in the producers table.
+DELETE FROM producers;
+
+-- also this will work: 
+TRUNCATE TABLE producers;
